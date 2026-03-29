@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль - NowkeArt</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">NowkeArt</div>
+        <div class="nav-links">
+            <a href="/dashboard">Главная</a>
+            <a href="/services">Услуги</a>
+            <a href="/order/new">Новый заказ</a>
+            <a href="/help">Помощь</a>
+            <a href="/profile">Профиль</a>
+            <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                <a href="/admin" class="admin-link">Админ-панель</a>
+            <% } %>
+            <a href="/logout" class="logout-btn">Выход</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Мой профиль</h1>
+        
+        <div class="profile-grid">
+            <div class="card">
+                <h2>Информация о пользователе</h2>
+                <div class="detail-row">
+                    <span class="detail-label">Имя пользователя:</span>
+                    <span class="detail-value"><%= user.username %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Роль:</span>
+                    <span class="detail-value"><%= user.role %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Баланс:</span>
+                    <span class="detail-value"><%= user.balance %> ₽</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Всего заказов:</span>
+                    <span class="detail-value"><%= user.orders %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Дата регистрации:</span>
+                    <span class="detail-value"><%= new Date(user.created_at).toLocaleDateString('ru-RU') %></span>
+                </div>
+            </div>
+            
+            <% if (staff) { %>
+            <div class="card">
+                <h2>Информация сотрудника</h2>
+                <div class="detail-row">
+                    <span class="detail-label">Имя:</span>
+                    <span class="detail-value"><%= staff.name %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Группа:</span>
+                    <span class="detail-value"><%= staff.staff_group %></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Рейтинг:</span>
+                    <span class="detail-value"><%= staff.raything %> ⭐</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Баланс:</span>
+                    <span class="detail-value"><%= staff.balance %> ₽</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Выполнено заказов:</span>
+                    <span class="detail-value"><%= staff.orders_did %></span>
+                </div>
+            </div>
+            <% } %>
+            
+            <div class="card">
+                <h2>Настройки уведомлений</h2>
+                <form action="/profile/settings" method="POST">
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" name="mailling" <%= user.mailling ? 'checked' : '' %>>
+                            Получать рассылки
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

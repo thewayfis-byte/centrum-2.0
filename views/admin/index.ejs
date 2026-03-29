@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Админ-панель - NowkeArt</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-admin">
+        <div class="nav-brand">NowkeArt Admin</div>
+        <div class="nav-links">
+            <a href="/admin">Главная</a>
+            <a href="/admin/orders">Заказы</a>
+            <a href="/admin/users">Пользователи</a>
+            <a href="/admin/staff">Сотрудники</a>
+            <a href="/admin/services">Услуги</a>
+            <a href="/admin/promocodes">Промокоды</a>
+            <a href="/admin/settings">Настройки</a>
+            <a href="/dashboard">На сайт</a>
+            <a href="/logout" class="logout-btn">Выход</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Панель администратора</h1>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Пользователи</h3>
+                <p class="stat-number"><%= stats.users %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Заказы</h3>
+                <p class="stat-number"><%= stats.orders %></p>
+            </div>
+            <div class="stat-card">
+                <h3>В ожидании</h3>
+                <p class="stat-number"><%= stats.pendingOrders %></p>
+            </div>
+            <div class="stat-card">
+                <h3>Сотрудники</h3>
+                <p class="stat-number"><%= stats.staff %></p>
+            </div>
+        </div>
+
+        <section class="admin-section">
+            <h2>Последние заказы</h2>
+            <table class="orders-table">
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Пользователь</th>
+                        <th>Услуга</th>
+                        <th>Статус</th>
+                        <th>Дата</th>
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% recentOrders.forEach(order => { %>
+                        <tr>
+                            <td>#<%= order.number %></td>
+                            <td>@id<%= order.user_id %></td>
+                            <td><%= order.service %></td>
+                            <td><span class="status status-<%= order.status.replace(/\s/g, '-') %>"><%= order.status %></span></td>
+                            <td><%= new Date(order.created_at).toLocaleDateString('ru-RU') %></td>
+                            <td><a href="/admin/orders" class="btn btn-small">Управление</a></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="admin-section">
+            <h2>Пользователи</h2>
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Имя пользователя</th>
+                        <th>Роль</th>
+                        <th>Дата регистрации</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.slice(0, 10).forEach(user => { %>
+                        <tr>
+                            <td><%= user.user_id %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.role %></td>
+                            <td><%= new Date(user.created_at).toLocaleDateString('ru-RU') %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <a href="/admin/users" class="btn btn-secondary">Все пользователи</a>
+        </section>
+    </div>
+</body>
+</html>

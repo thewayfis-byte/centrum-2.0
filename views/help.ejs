@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Помощь - NowkeArt</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">NowkeArt</div>
+        <div class="nav-links">
+            <a href="/dashboard">Главная</a>
+            <a href="/services">Услуги</a>
+            <a href="/order/new">Новый заказ</a>
+            <a href="/help">Помощь</a>
+            <a href="/profile">Профиль</a>
+            <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                <a href="/admin" class="admin-link">Админ-панель</a>
+            <% } %>
+            <a href="/logout" class="logout-btn">Выход</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Помощь и поддержка</h1>
+        
+        <% if (req.query.sent) { %>
+            <div class="success">Ваше сообщение отправлено! Менеджер скоро ответит.</div>
+        <% } %>
+        
+        <div class="help-content">
+            <div class="card">
+                <h2>Связаться с менеджером</h2>
+                <form action="/help/send" method="POST">
+                    <div class="form-group">
+                        <label for="message">Ваше сообщение:</label>
+                        <textarea id="message" name="message" rows="6" required placeholder="Опишите ваш вопрос..."></textarea>
+                    </div>
+                    <% if (req.query.order) { %>
+                        <input type="hidden" name="order_id" value="<%= req.query.order %>">
+                    <% } %>
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h2>Частые вопросы</h2>
+                <div class="faq-item">
+                    <h3>Как создать заказ?</h3>
+                    <p>Перейдите в раздел "Новый заказ", выберите услугу и заполните форму.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Как оплатить заказ?</h3>
+                    <p>После создания заказа вы получите ссылку на оплату.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Сроки выполнения</h3>
+                    <p>Сроки зависят от сложности заказа и указаны в описании услуги.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

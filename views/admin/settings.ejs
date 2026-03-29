@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Настройки - Админ-панель</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-admin">
+        <div class="nav-brand">NowkeArt Admin</div>
+        <div class="nav-links">
+            <a href="/admin">Главная</a>
+            <a href="/admin/orders">Заказы</a>
+            <a href="/admin/users">Пользователи</a>
+            <a href="/admin/staff">Сотрудники</a>
+            <a href="/admin/services">Услуги</a>
+            <a href="/admin/promocodes">Промокоды</a>
+            <a href="/admin/settings">Настройки</a>
+            <a href="/dashboard">На сайт</a>
+            <a href="/logout" class="logout-btn">Выход</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Настройки системы</h1>
+        
+        <div class="card">
+            <h2>Настройки дизайна</h2>
+            <form action="/admin/settings" method="POST">
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="on_free_avatar" <%= settings.on_free_avatar ? 'checked' : '' %>>
+                        Бесплатный аватар (включить услугу бесплатного аватара)
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="reviews" <%= settings.reviews ? 'checked' : '' %>>
+                        Обязательный отзыв (требовать отзыв после завершения заказа)
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Сохранить настройки</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

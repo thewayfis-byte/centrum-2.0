@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Заказ #<%= order.number %> - NowkeArt</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">NowkeArt</div>
+        <div class="nav-links">
+            <a href="/dashboard">Главная</a>
+            <a href="/services">Услуги</a>
+            <a href="/order/new">Новый заказ</a>
+            <a href="/help">Помощь</a>
+            <a href="/profile">Профиль</a>
+            <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                <a href="/admin" class="admin-link">Админ-панель</a>
+            <% } %>
+            <a href="/logout" class="logout-btn">Выход</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Заказ #<%= order.number %></h1>
+        
+        <div class="order-details">
+            <div class="detail-row">
+                <span class="detail-label">Услуга:</span>
+                <span class="detail-value"><%= order.service %></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Статус:</span>
+                <span class="status status-<%= order.status.replace(/\s/g, '-') %>"><%= order.status %></span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Дата создания:</span>
+                <span class="detail-value"><%= new Date(order.created_at).toLocaleString('ru-RU') %></span>
+            </div>
+            <% if (order.designer_id) { %>
+            <div class="detail-row">
+                <span class="detail-label">Дизайнер:</span>
+                <span class="detail-value">@id<%= order.designer_id %></span>
+            </div>
+            <% } %>
+            <% if (order.manager_id) { %>
+            <div class="detail-row">
+                <span class="detail-label">Менеджер:</span>
+                <span class="detail-value">@id<%= order.manager_id %></span>
+            </div>
+            <% } %>
+            
+            <div class="detail-row full-width">
+                <span class="detail-label">Описание:</span>
+                <div class="detail-value description"><%= order.data %></div>
+            </div>
+            
+            <% if (order.arms) { %>
+            <div class="detail-row">
+                <span class="detail-label">Тип:</span>
+                <span class="detail-value"><%= order.arms %></span>
+            </div>
+            <% } %>
+        </div>
+
+        <div class="order-actions">
+            <a href="/dashboard" class="btn btn-secondary">Назад к списку</a>
+            <% if (order.status === 'Просматривается' || order.status === 'Выполняется') { %>
+                <a href="/help?order=<%= order.id %>" class="btn btn-primary">Связаться с поддержкой</a>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
