@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Услуги - NowkeArt</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">NowkeArt</div>
+        <div class="nav-links">
+            <a href="/dashboard">Главная</a>
+            <a href="/services">Услуги</a>
+            <a href="/order/new">Новый заказ</a>
+            <a href="/help">Помощь</a>
+            <a href="/profile">Профиль</a>
+            <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                <a href="/admin" class="admin-link">Админ-панель</a>
+            <% } %>
+            <a href="/logout" class="logout-btn">Выход</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Наши услуги</h1>
+        
+        <div class="services-grid">
+            <% services.forEach(service => { %>
+                <div class="service-card">
+                    <h3><%= service.service %></h3>
+                    <p class="service-about"><%= service.about %></p>
+                    <p class="service-price">Цена: от <%= service.price %> ₽</p>
+                    <% if (service.alias) { %>
+                        <span class="service-alias">Категория: <%= service.alias %></span>
+                    <% } %>
+                    <a href="/order/new?service=<%= encodeURIComponent(service.service) %>" class="btn btn-primary">Заказать</a>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+</html>

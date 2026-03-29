@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новый заказ - NowkeArt</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">NowkeArt</div>
+        <div class="nav-links">
+            <a href="/dashboard">Главная</a>
+            <a href="/services">Услуги</a>
+            <a href="/order/new">Новый заказ</a>
+            <a href="/help">Помощь</a>
+            <a href="/profile">Профиль</a>
+            <% if (typeof user !== 'undefined' && user.role === 'admin') { %>
+                <a href="/admin" class="admin-link">Админ-панель</a>
+            <% } %>
+            <a href="/logout" class="logout-btn">Выход</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Оформление заказа</h1>
+        
+        <form action="/order/create" method="POST" enctype="multipart/form-data" class="order-form">
+            <div class="form-group">
+                <label for="service">Выберите услугу:</label>
+                <select id="service" name="service" required>
+                    <option value="">-- Выберите услугу --</option>
+                    <% services.forEach(service => { %>
+                        <option value="<%= service.service %>" <%= typeof req !== 'undefined' && req.query.service === service.service ? 'selected' : '' %>>
+                            <%= service.service %> - <%= service.price %> ₽
+                        </option>
+                    <% }) %>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Описание заказа:</label>
+                <textarea id="description" name="description" rows="6" required placeholder="Опишите максимально подробно ваш заказ..."></textarea>
+            </div>
+
+            <div class="form-group" id="arms-group" style="display: none;">
+                <label for="arms">Тип рук:</label>
+                <select id="arms" name="arms">
+                    <option value="">-- Не выбрано --</option>
+                    <option value="Alex">Alex</option>
+                    <option value="Steve">Steve</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="avatar-type-group" style="display: none;">
+                <label for="avatar_type">Тип аватара:</label>
+                <select id="avatar_type" name="arms">
+                    <option value="">-- Не выбрано --</option>
+                    <option value="Head">Head</option>
+                    <option value="3D">3D</option>
+                    <option value="Totem">Totem</option>
+                    <option value="Кубик">Кубик</option>
+                    <option value="Round">Round</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="attachments">Прикрепите файлы (необязательно):</label>
+                <input type="file" id="attachments" name="attachments" multiple>
+            </div>
+
+            <% if (settings.on_free_avatar == 1) { %>
+                <div class="free-avatar-notice">
+                    ℹ️ Бесплатный аватар доступен! Выберите соответствующую услугу.
+                </div>
+            <% } %>
+
+            <button type="submit" class="btn btn-primary btn-large">Создать заказ</button>
+            <a href="/dashboard" class="btn btn-secondary">Отмена</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('service').addEventListener('change', function() {
+            const service = this.value.toLowerCase();
+            const armsGroup = document.getElementById('arms-group');
+            const avatarTypeGroup = document.getElementById('avatar-type-group');
+            
+            armsGroup.style.display = 'none';
+            avatarTypeGroup.style.display = 'none';
+            
+            if (service.includes('скин')) {
+                armsGroup.style.display = 'block';
+            } else if (service.includes('оформление профиля')) {
+                avatarTypeGroup.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
