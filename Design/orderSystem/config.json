@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "morozov-accounting",
+  "private_key_id": "18cc0e50c45efbc8761e92a077be0fbedee93eb5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCedhuK/6CXMOJz\nNIBAbKsfc7yhs0iqLpX56yCDaVHLrdfeD2Zrx3d+Bd4sUAQ0MhjbM7NVyFtR7WtW\nrxRimBRUto9wyR8yFww4LibxMdDwuv/QwgQDE8gwfCD3cWifgAyHy7YKqhdg0SIU\nZJPMiJEf1HqJrlP3JucF3l0CcD8eZ2di+Do0AbUDh/JIIFSzp1ouAU2CkOs6NEEL\nSrBu/f32EAMGWp0opZWFbDGEQINjgu1jgE54hwL8LU+rd2yGsZ6AuvBgWzhR1+rb\nGeXplYlDCQkT8Izz1qJRr8739cvnTxC86boZwaFB4ScWsdSqryH3T4GPOQ1QuwWw\nstx8IPZrAgMBAAECggEALz5BOfC6nTjq2rQVZJ/BaRAldgQwruRSvH8YY3V7+ICs\n8jyfKZT/kCgJtCZrCnDBLmE8n1+rskJZlS9/oWF79kGzhEnCLjnm370KyTAz/gGS\nkVe2wIAeWC452ewK6DrSAY5/iLBrZecUBQZzdjBlLBs6KWA7El2b1QkVq8txVgvA\nEjblmr525hO8SyqHcA1ySWJG5CGasOEM+bdE+Rd9COonw3h3AW4/nnGJ6xKxpkGM\njm8UzhYRf4+tgCI4GV+XYHrxUhI/D8d6NMuhfJWG6ODdtEpIVPaRb9A7qmBjKt2v\nHt6bL9Tu4JbRJJlwPsQf3QaXKgUCk9cNToyuN0QmGQKBgQDLBC08vbduKeQp5bSF\nc8FTpW4icK++NiBsJxQw3R/3n3uF7Het0UlIqsPGRRwqkO2UBPlZjufrj27OoYgM\ncU3L7cTNM7bWzcHB649WuBmQzIDv008MsA87dLnq89EKsJiVofsW/Ng+JUnnIzFj\nv8vbW276nnWOW4t18jdX7ijElwKBgQDH0SXKEU/m9m3+gpbAAR2CD7byOl8TRvrL\nq7NkAvUsoUxacCj/iWTNgbgtB8PQp3ZMwJL+ilUOutshkSbBIqqTnjY/g4pOYv83\n7xW2RhSW3GO4SFJowa1m9oOEXRRKn8r1oLu/jThvcmm19Jg8gcCjlCduwmFap3GA\nf6HiLqJzTQKBgHSsUdM2tNR6/sWVXcnUXKbVzBW+7UFDmh6N1uy+KEEHRtYQsDcU\nsCky+pBX53gPEnqe4S63ElIufGAENUvxUeSBITlNHycT2Oa5mgcchpTQ8sjhh+yi\nwh5JVw/QT7L1Crvz+3maliwhAff0Ic5Ry7alNYKSzryhn+SI74V5ObTBAoGAEOgA\nQ4WNdiQ5kEQqTxqJDZ0YxIvtyWrDA4KGjhq19c278Rb2URCl58Fm/OBgUAIrPzk3\n9rNrmPB0Y/WtCsBNIGpNerg9dn5ny6q98oshaNZC1a/A0T451rFa1VMuyVWVzYyI\n9h8TvFI44X1NeCkeTHjXkUZ/CDWMo+uoncOGWS0CgYEAw71e7sh6stHEmblxlzDp\nPue6CReiI6VnIDeSCTzApWyEPUybRDYByyDQ5B9DtXNKTK39Z+Bfdn6aAmygEjF6\nHxm4/cDmMkOUTZIhgS4C/WOhZLczOJzftglPXw1Pcia4O/FFXiqJ38dwJxSeKxJx\n/JpTZUUFhf4NMiQVrs3pujY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "accounting@morozov-accounting.iam.gserviceaccount.com",
+  "client_id": "104186798923164999287",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/accounting%40morozov-accounting.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

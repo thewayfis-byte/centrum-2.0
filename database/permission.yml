@@ -1,0 +1,1 @@
+admin: ["manage_system", "send_manager_chat", "send_order_chat", "approve-order", "paid-order"]
